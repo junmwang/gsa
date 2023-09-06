@@ -1,13 +1,13 @@
-trainrdkitnonan=readtable('train_rdkit_no_nan.xlsx');
-%testrdkitnonan=readtable('test_rdkit_no_nan.xlsx');
-%ncomp=height(trainrdkitnonan);
-nsize=size(trainrdkitnonan)
+trainrdkitnonan=readtable('train_rdkit.xlsx');
+%testrdkitnonan=readtable('test_rdkit.xlsx');
+%ncomp=height(trainrdkit);
+nsize=size(trainrdkit)
 ndesc=nsize(2) -2 %omit the first two columns
 nrun=10
 for d=1:ndesc
 	cmdstr=['modify_fun_matlab.exe -i trainRegressionModel.m -o gsaModel.m -id ' num2str(d, '%d')]	
 	system(cmdstr)
-    train=trainrdkitnonan;
+    train=trainrdkit;
     train(:,d+2)=[]
     vrmse(1) = d
 	for num = 1:nrun
